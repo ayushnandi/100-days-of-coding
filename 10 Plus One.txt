@@ -1,5 +1,5 @@
 /*
-Plus One
+10. Plus One
 
 You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
 
@@ -29,3 +29,34 @@ Explanation: The array represents the integer 9.
 Incrementing by one gives 9 + 1 = 10.
 Thus, the result should be [1,0].
 */
+
+// Solution
+
+class Solution {
+    public int[] plusOne(int[] digits) {
+
+        if (digits[digits.length-1] == 9) {
+            int i = digits.length - 1;
+            int carry = 1;
+            for (; i >= 0 ; i--) {
+                if (digits[i] == 9 && carry == 1) {
+                    digits[i] = 0;
+                    carry = 1;
+                } 
+                else {
+                    digits[i] = digits[i] + carry;
+                    carry = 0;
+                }
+            }
+            if (carry == 1) {
+                int[] arr = new int[digits.length + 1];
+                arr[0] = 1;
+                return arr;
+            }
+        }
+        else {
+            digits[digits.length - 1] = digits[digits.length - 1] + 1;
+        }
+        return digits;
+    }
+}
